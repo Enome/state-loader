@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta http-equiv='content-type' content='text/html; charset=utf-8' />
+    <title>State-loader</title>
+  </head>
+
+  <body>
+
+    <div data-state-container='header'></div>
+    <div data-state-container='page'></div>
+
+    <ul>
+      <li>
+        <a data-state-push='{ header: "states/header.html" }'>Load state on in header</a>
+      </li>
+      <li>
+        <a data-state-push='{ header: "states/header2.html" }'>Load header 2 on in header</a>
+      </li>
+      <li>
+        <a data-state-push='{ page: "states/page.html" }'>Load state on in page</a>
+      </li>
+      <li>
+        <a data-state-push='{ page: "", header: "" }'>Clear states</a>
+      </li>
+    </ul>
+
+    <script src='jquery.js'></script>
+    <script src='querystring.js'></script>
+    <script src='state-hash-change.js'></script>
+    <script src='state-push.js'></script>
+    <script src='state-container.js'></script>
+    <script src='state-animation.js'></script>
+    <script src='index.js'></script>
+    
+  </body>
+
+</html>
