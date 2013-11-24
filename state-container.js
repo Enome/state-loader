@@ -1,7 +1,5 @@
 /*global jQuery*/
 
-/* loadState */
-
 ;(function ($, window, document, querystring, undefined) {
 
   var plugin_name = 'loadState';
@@ -22,19 +20,27 @@
 
     if (options.id === id) {
 
+      if (element.data('current_state') === options.url) {
+        return; 
+      }
+
+      element.data('current_state', options.url);
+
       getState(options.url, function (state) {
 
-        var resume = function () {
-          element.unloadState(options);
+        var old = element.contents();
 
-          setTimeout(function () {
-            element.append(state);
-          }, 500);
+        var resume = function () {
+          if (old.length) {
+            element[0].removeChild(old[0]);
+          }
         };
 
-        var event = $.Event('stateloaded');
+        element.append(state);
 
-        element.trigger(event, [state, resume]);
+        var event = $.Event('statechange');
+
+        element.trigger(event, [old, state, resume]);
 
         if (!event.isDefaultPrevented()) {
           resume(); 
@@ -59,8 +65,6 @@
 })(jQuery, window, document, window.querystring());
 
 
-/* unloadState */
-
 ;(function ($, window, document, querystring, undefined) {
 
   var plugin_name = 'unloadState';
@@ -70,7 +74,6 @@
   var plugin = function (element, options) {
 
     var id = element.attr('data-state-container');
-
     var contents = element.contents();
 
     var resume = function () {
@@ -78,7 +81,9 @@
     };
 
     if (options.id === id && contents.length !== 0) {
-      var event = $.Event('stateunloaded');
+      element.data('current_state', '');
+
+      var event = $.Event('stateunload');
       element.trigger(event, [contents, resume]);
       if (!event.isDefaultPrevented()) {
         resume(); 

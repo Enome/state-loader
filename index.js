@@ -32,46 +32,25 @@ $(function () {
 
   });
 
-  containers.on('stateloaded', function (e, contents, resume) {
+  /* On state change */
+
+  containers.on('statechange', function (e, old_state, new_state, resume) {
+
     e.preventDefault();
-    contents.fadeIn('slow');
-    resume();  
+
+    new_state
+      .enterStyle()
+      .activeStyle();
+
+    old_state.leaveStyle(resume);
+
   });
 
-  containers.on('stateunloaded', function (e, contents, resume) {
+  /* On state unload */
+
+  containers.on('stateunload', function (e, contents, resume) {
     e.preventDefault();
-    contents.fadeOut('slow', function () {
-      resume();  
-    });
+    contents.leaveStyle(resume);
   });
   
 });
-
-/*
-
-$(window).on('hashobjectchange', function (e, obj) {
-
-  console.log('obj');
-
-  return; 
-
-  var container = $('container').stateContainer();
-
-  $('container').unloadState();
-
-  $('container').on('loadstate', function (e, state, resume) {
-
-    e.preventDefault();
-
-    state.find('[data-animate]')
-      .enterAnimation()
-      .activeAnimation(resume);
-    
-  });
-
-  $('container').on('unloadstate', function (e, state, resume) {
-    state.find('[data-animate]').leaveAnimation(resume);
-  });
-  
-});
-*/
