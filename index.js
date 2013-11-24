@@ -8,7 +8,7 @@ $(function () {
 
   /* Initiaze state hash push */
 
-  $('*[data-state-push').stateHashPush();
+  $('*[data-state-push]').stateHashPush();
 
   /* On hash change */
 
@@ -17,17 +17,7 @@ $(function () {
   $(window).on('statehashchange', function (e, obj) {
 
     containers.each(function () {
-
-      var container = $(this);
-
-      $.each(obj, function (key, value) {
-        if (value) {
-          container.loadState({ id: key, url: value });
-        } else {
-          container.unloadState({ id: key, url: value });
-        }
-      });
-
+      $(this).loadState(obj);
     });
 
   });
@@ -45,6 +35,7 @@ $(function () {
     old_state.leaveStyle(resume);
 
   });
+
 
   /* On state unload */
 
