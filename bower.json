@@ -1,0 +1,11 @@
+{
+  "name": "state-loader",
+  "version": "0.0.0",
+  "description": "Combination of jQuery plugins to load html files (states) inside a container element.",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components"
+  ]
+}

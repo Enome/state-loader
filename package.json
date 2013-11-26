@@ -1,0 +1,13 @@
+{
+  "name": "state-loader",
+  "version": "0.0.1",
+  "description": "jQuery plugin for loading .html files inside containers with css animations.",
+  "main": "querystring.js",
+  "license": "MIT",
+  "devDependencies": {
+    "grunt": "~0.4.2",
+    "grunt-contrib-copy": "~0.4.1",
+    "grunt-contrib-clean": "~0.5.0",
+    "grunt-contrib-concat": "~0.3.0"
+  }
+}
