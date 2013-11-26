@@ -15,22 +15,13 @@
         options.callback && options.callback();
       };
 
-      setTimeout(function () {
+      element.one('animationend webkitAnimationEnd oanimationend MSAnimationEnd', function () {
+        end();
+        element.removeClass(style);
+      });
 
-        element.addClass(style);
-        element.removeClass(element.data('previous_animation_style'));
-        element.data('previous_animation_style', style);
+      element.addClass(style);
 
-        var duration = element.css('transition-duration');
-
-        if (duration === '0s') {
-          return end();
-        }
-
-        element.on('transitionend', end);
-        
-      }, 0);
-      
     });
 
   };

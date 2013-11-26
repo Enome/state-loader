@@ -5,36 +5,49 @@
     <meta http-equiv='content-type' content='text/html; charset=utf-8' />
     <title>State-loader</title>
     <style>
-
-      *[class*='title-'] {
-        transition: background linear 200ms; 
+      .cl-animation-reverse {
+        -webkit-animation-direction: reverse;
       }
 
-      .title-enter {
-        background: white; 
+      @-webkit-keyframes slidein {
+        from {
+          margin-left: 100%; 
+        }
+
+        to {
+          margin-left: 0;
+        }
       }
 
-      .title-active {
-        background: red; 
+      @-webkit-keyframes slideout {
+        from {
+          margin-left: 0; 
+        }
+
+        to {
+          margin-left: -100%
+        }
       }
 
-      .title-leave {
-        background: green; 
+      *[class*=slide-] {
+        width: 100%;
       }
 
-      .border {
-        border: 1px solid black;
+      .slide-enter {
+        -webkit-animation-name: slidein;
+        -webkit-animation-duration: 1s;
       }
 
-      .transition {
-        transition: border linear 1s;
+      .slide-leave {
+        -webkit-animation-name: slideout;
+        -webkit-animation-duration: 1s;
       }
-
     </style>
   </head>
 
   <body>
 
+    <span data-state-container='popup'></span>
     <div data-state-container='header'></div>
     <div data-state-container='page'></div>
 

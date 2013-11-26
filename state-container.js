@@ -1,6 +1,6 @@
 /*global jQuery*/
 
-;(function ($, window, document, querystring, undefined) {
+;(function ($, window, document, undefined) {
 
   var plugin_name = 'loadState';
 
@@ -39,6 +39,7 @@
         element.append(state);
 
         var event = $.Event('statechange');
+        event.hash_object = options;
 
         element.trigger(event, [contents, state, resume]);
 
@@ -65,6 +66,7 @@
       element.data('current_state', '');
 
       var event = $.Event('stateunload');
+      event.state = url;
 
       element.trigger(event, [contents, resume]);
 
@@ -86,4 +88,4 @@
     });
   };
 
-})(jQuery, window, document, window.querystring());
+})(jQuery, window, document);

@@ -24,7 +24,13 @@
 
     element.click(function () {
       var qs = eval('(' + element.attr('data-state-push') + ')');
-      setHashObject($.extend(getHashObject(), qs));
+      var hash_object = getHashObject();
+
+      if (!qs.reverse) {
+        delete hash_object.reverse;
+      }
+
+      setHashObject($.extend(hash_object, qs));
     });
 
   };
