@@ -1,6 +1,6 @@
 {
   "name": "state-loader",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Combination of jQuery plugins to load html files (states) inside a container element.",
   "license": "MIT",
   "ignore": [

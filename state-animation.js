@@ -11,16 +11,20 @@
     element.queue(function (next) {
 
       var end = function () {
+        element.removeClass(style);
         next();
         options.callback && options.callback();
       };
 
       element.one('animationend webkitAnimationEnd oanimationend MSAnimationEnd', function () {
         end();
-        element.removeClass(style);
       });
 
       element.addClass(style);
+
+      if (element.css('animation-name') === 'none') {
+        end();
+      }
 
     });
 
