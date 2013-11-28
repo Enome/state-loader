@@ -24,26 +24,33 @@ $(function () {
 
   containers.on('statechange', function (e, old_state, new_state, resume) {
 
-    /* preventDefault: lets do animations before removing old state */
     e.preventDefault();
 
+    var container = $(this);
     var reverse = e.hash_object.reverse;
+
+    var start = '-enter';
+    var end = '-leave';
+
+    if (reverse) {
+      start = '-leave'; 
+      end = '-enter';
+    }
 
     /* New state */
 
-    var prefix = new_state.attr('data-animate');
+    var prefix = container.attr('data-animate');
 
     if (prefix) {
+
       if (reverse) {
         new_state.addClass('cl-animation-reverse'); 
       }
 
-      new_state.animationStyle({ style: prefix + '-enter' });
+      new_state.animationStyle({ style: prefix + start });
     }
 
     /* Old state */
-
-    prefix = old_state.attr('data-animate');
 
     if (!prefix) {
       return resume(); 
@@ -55,7 +62,7 @@ $(function () {
       old_state.addClass('cl-animation-reverse'); 
     }
 
-    old_state.animationStyle({ style: prefix + '-leave', callback: resume });
+    old_state.animationStyle({ style: prefix + end, callback: resume });
 
   });
 
@@ -64,8 +71,9 @@ $(function () {
   containers.on('stateunload', function (e, contents, resume) {
 
     e.preventDefault();
+    var container = $(this);
 
-    var prefix = contents.attr('data-animate');
+    var prefix = container.attr('data-animate');
 
     if (!prefix) {
       return resume(); 
