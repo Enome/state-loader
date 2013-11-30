@@ -1,6 +1,6 @@
 {
   "name": "state-loader",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "jQuery plugin for loading .html files inside containers with css animations.",
   "main": "querystring.js",
   "license": "MIT",

@@ -30,6 +30,19 @@
         delete hash_object.reverse;
       }
 
+      for (var prop in hash_object) {
+
+        if (hash_object.hasOwnProperty(prop)) {
+
+          var c = hash_object[prop];
+
+          if (!c) {
+            delete hash_object[prop];
+          }
+        
+        }
+      }
+
       setHashObject($.extend(hash_object, qs));
     });
 
